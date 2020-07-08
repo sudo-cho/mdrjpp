@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { reset, themes } from "react95";
+
+import F1 from "./F1.js";
+
+const ResetStyles = createGlobalStyle`
+  ${reset}
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/f1">
+          <ResetStyles />
+          <ThemeProvider theme={themes.default}>
+            <div
+              style={{
+                padding: "3rem",
+                background: "teal",
+                height: "100vh",
+              }}
+            >
+              <F1 />
+            </div>
+          </ThemeProvider>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
