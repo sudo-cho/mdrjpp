@@ -1,7 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
-import { reset, themes } from "react95";
+import { reset, themes, Anchor } from "react95";
 
 import F1 from "./F1.js";
 
@@ -11,24 +11,29 @@ const ResetStyles = createGlobalStyle`
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/f1">
-          <ResetStyles />
-          <ThemeProvider theme={themes.default}>
-            <div
-              style={{
-                padding: "3rem",
-                background: "teal",
-                height: "100vh",
-              }}
-            >
+    <ThemeProvider theme={themes.default}>
+      <ResetStyles />
+      <div
+        style={{
+          background: "teal",
+          height: "100vh",
+          padding: "3em",
+        }}
+      >
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Anchor>
+                <Link to="/f1">Formule 1</Link>
+              </Anchor>
+            </Route>
+            <Route path="/f1">
               <F1 />
-            </div>
-          </ThemeProvider>
-        </Route>
-      </Switch>
-    </Router>
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    </ThemeProvider>
   );
 }
 
