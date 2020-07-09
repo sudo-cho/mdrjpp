@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import useFetch from "fetch-suspense";
+import React, { useState, Suspense } from "react";
 import {
   Window,
   Table,
@@ -11,12 +12,12 @@ import {
   WindowContent,
   Tabs,
   Tab,
+  Hourglass,
 } from "react95";
 
-import data from "./data.json";
-
-export default () => {
+const F1Component = () => {
   const [activeTab, handleChange] = useState(0);
+  const data = useFetch("https://api.npoint.io/4b91d0a0fa91bc56a7a2");
 
   return (
     <Window>
@@ -50,3 +51,9 @@ export default () => {
     </Window>
   );
 };
+
+export default () => (
+  <Suspense fallback={<Hourglass size={128} />}>
+    <F1Component />
+  </Suspense>
+);
