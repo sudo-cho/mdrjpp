@@ -18,7 +18,7 @@ import { getScore } from "./utils.js";
 
 const F1Component = () => {
   const [activeTab, handleChange] = useState(0);
-  const data = useFetch("https://api.npoint.io/4b91d0a0fa91bc56a7a2");
+  const data = useFetch(process.env.REACT_APP_API_URL);
 
   return (
     <Window>
