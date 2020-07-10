@@ -14,6 +14,7 @@ import {
   Tab,
   Hourglass,
 } from "react95";
+import { getScore } from "./utils.js";
 
 const F1Component = () => {
   const [activeTab, handleChange] = useState(0);
@@ -42,6 +43,9 @@ const F1Component = () => {
                   {value.map((val, index) => {
                     return <TableDataCell key={index}>{val}</TableDataCell>;
                   })}
+                  <TableDataCell key={`${index} + sum`}>
+                    {getScore(value)}
+                  </TableDataCell>
                 </TableRow>
               );
             })}
