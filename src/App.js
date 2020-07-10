@@ -16,7 +16,8 @@ function App() {
       <div
         style={{
           background: "teal",
-          height: "100vh",
+          minHeight: "100vh",
+          height: "100%",
           padding: "3em",
         }}
       >
