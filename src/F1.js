@@ -15,7 +15,7 @@ import {
   Hourglass,
 } from "react95";
 import styled from "styled-components";
-import { getColorByPosition, getScore } from "./utils.js";
+import { getScore } from "./utils.js";
 
 const StyledTableDataCell = styled(TableDataCell)`
   text-align: ${({ index }) => (index > 1 ? "center" : "left")};
@@ -65,7 +65,7 @@ const F1Component = () => {
                     return (
                       <StyledTableDataCell
                         index={indexCell}
-                        color={() => getColorByPosition(val)}
+                        color={() => val}
                         key={indexCell}
                       >
                         {val}
