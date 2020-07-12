@@ -1,6 +1,9 @@
 import React from "react";
 import { Window, WindowHeader, WindowContent } from "react95";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+
+import Icon from "./Icon.js";
 
 const Frame = styled.div`
   height: 100%;
@@ -11,17 +14,18 @@ const Frame = styled.div`
   min-width: 640px;
   min-height: 500px;
   display: grid;
+  grid-template-columns: repeat(8, 1fr);
 `;
 
 const Folder = styled.div`
   display: flex;
+  flex-direction: column;
   place-items: center;
   align-items: center;
-  flex-direction: column;
 `;
 
 const Title = styled.h3`
-  font-size: 1.5em;
+  font-size: 1em;
 `;
 
 export default () => (
@@ -29,9 +33,12 @@ export default () => (
     <WindowHeader>mdrjpp</WindowHeader>
     <WindowContent>
       <Frame>
-        <Folder>
-          <Title>Formula 1</Title>
-        </Folder>
+        <Link to="/f1">
+          <Folder>
+            <Icon name="folder" />
+            <Title>Formula 1</Title>
+          </Folder>
+        </Link>
       </Frame>
     </WindowContent>
   </Window>

@@ -9,7 +9,6 @@ import Home from "./Home.js";
 
 const ResetStyles = createGlobalStyle`
   ${reset};
-
 `;
 
 const Wrapper = styled.div`

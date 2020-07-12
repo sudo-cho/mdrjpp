@@ -63,11 +63,7 @@ const F1Component = () => {
                 <TableRow key={indexRow}>
                   {value.map((val, indexCell) => {
                     return (
-                      <StyledTableDataCell
-                        index={indexCell}
-                        color={() => val}
-                        key={indexCell}
-                      >
+                      <StyledTableDataCell index={indexCell} key={indexCell}>
                         {val}
                       </StyledTableDataCell>
                     );
