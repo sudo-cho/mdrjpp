@@ -1,39 +1,40 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import { reset, themes, Anchor } from "react95";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import { reset, themes } from "react95";
 
 import F1 from "./F1.js";
+import Home from "./Home.js";
 
 const ResetStyles = createGlobalStyle`
   ${reset}
+`;
+
+const Wrapper = styled.div`
+  background: teal;
+  min-height: 100vh;
+  height: 100%;
+  padding: 5em;
+  font-size: 11px;
+  box-sizing: border-box;
 `;
 
 function App() {
   return (
     <ThemeProvider theme={themes.default}>
       <ResetStyles />
-      <div
-        style={{
-          background: "teal",
-          minHeight: "100vh",
-          height: "100%",
-          padding: "3em",
-        }}
-      >
+      <Wrapper>
         <Router>
           <Switch>
             <Route exact path="/">
-              <Anchor>
-                <Link to="/f1">Formule 1</Link>
-              </Anchor>
+              <Home />
             </Route>
             <Route path="/f1">
               <F1 />
             </Route>
           </Switch>
         </Router>
-      </div>
+      </Wrapper>
     </ThemeProvider>
   );
 }
