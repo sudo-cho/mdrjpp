@@ -14,16 +14,37 @@ import {
   Tab,
   Hourglass,
 } from "react95";
-import { getScore } from "./utils.js";
+import styled from "styled-components";
+import { getColorByPosition, getScore } from "./utils.js";
+
+const StyledTableDataCell = styled(TableDataCell)`
+  text-align: ${({ index }) => (index > 1 ? "center" : "left")};
+  vertical-align: middle;
+`;
+
+const StyledWindow = styled(Window)`
+  max-width: 100%;
+`;
+
+const StyledWindowContent = styled(WindowContent)`
+  & > div {
+    max-width: 100%;
+    overflow-x: scroll;
+
+    &:before {
+      display: none;
+    }
+  }
+`;
 
 const F1Component = () => {
   const [activeTab, handleChange] = useState(0);
-  const data = useFetch(process.env.REACT_APP_API_URL);
+  const data = useFetch("https://api.npoint.io/4b91d0a0fa91bc56a7a2");
 
   return (
-    <Window>
+    <StyledWindow>
       <WindowHeader>Formule 1</WindowHeader>
-      <WindowContent>
+      <StyledWindowContent>
         <Tabs value={activeTab} onChange={(value) => handleChange(value)}>
           <Tab value={0}>Saison 1</Tab>
           <Tab value={1}>Saison 2</Tab>
@@ -37,22 +58,30 @@ const F1Component = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.stats.map((value, index) => {
+            {data.stats.map((value, indexRow) => {
               return (
-                <TableRow key={index}>
-                  {value.map((val, index) => {
-                    return <TableDataCell key={index}>{val}</TableDataCell>;
+                <TableRow key={indexRow}>
+                  {value.map((val, indexCell) => {
+                    return (
+                      <StyledTableDataCell
+                        index={indexCell}
+                        color={() => getColorByPosition(val)}
+                        key={indexCell}
+                      >
+                        {val}
+                      </StyledTableDataCell>
+                    );
                   })}
-                  <TableDataCell key={`${index} + sum`}>
+                  <StyledTableDataCell key={`${indexRow} + sum`}>
                     {getScore(value)}
-                  </TableDataCell>
+                  </StyledTableDataCell>
                 </TableRow>
               );
             })}
           </TableBody>
         </Table>
-      </WindowContent>
-    </Window>
+      </StyledWindowContent>
+    </StyledWindow>
   );
 };
 
