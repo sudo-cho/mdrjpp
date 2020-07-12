@@ -36,7 +36,7 @@ export default () => (
         <Link to="/f1">
           <Folder>
             <Icon name="folder" />
-            <Title>Formula 1</Title>
+            <Title>Formule 1</Title>
           </Folder>
         </Link>
       </Frame>

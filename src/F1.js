@@ -15,7 +15,7 @@ import {
   Hourglass,
 } from "react95";
 import styled from "styled-components";
-import { getScore } from "./utils.js";
+import { getScore, getArrayOfScores, getConstructorScore } from "./utils.js";
 
 const StyledTableDataCell = styled(TableDataCell)`
   text-align: ${({ index }) => (index > 1 ? "center" : "left")};
@@ -40,6 +40,7 @@ const StyledWindowContent = styled(WindowContent)`
 const F1Component = () => {
   const [activeTab, handleChange] = useState(0);
   const data = useFetch("https://api.npoint.io/4b91d0a0fa91bc56a7a2");
+  const scores = getArrayOfScores(data.stats);
 
   return (
     <StyledWindow>
@@ -70,6 +71,13 @@ const F1Component = () => {
                   })}
                   <StyledTableDataCell key={`${indexRow} + sum`}>
                     {getScore(value)}
+                  </StyledTableDataCell>
+                  <StyledTableDataCell key={`${indexRow} + total`}>
+                    {indexRow % 2 === 0
+                      ? getConstructorScore(scores)[
+                          indexRow === 0 ? indexRow : indexRow - 1
+                        ]
+                      : ""}
                   </StyledTableDataCell>
                 </TableRow>
               );
