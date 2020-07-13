@@ -90,8 +90,13 @@ const F1Component = () => {
   );
 };
 
+const Formula1Animation = styled.div`
+  font-size: 2.5em;
+`;
+
 export default () => (
   <Suspense fallback={<Hourglass size={128} />}>
     <F1Component />
+    <Formula1Animation>🏎️</Formula1Animation>
   </Suspense>
 );
