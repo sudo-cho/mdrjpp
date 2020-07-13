@@ -15,6 +15,7 @@ const Frame = styled.div`
   min-height: 500px;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
 `;
 
 const Folder = styled.div`

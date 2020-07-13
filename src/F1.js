@@ -24,6 +24,7 @@ const StyledTableDataCell = styled(TableDataCell)`
 
 const StyledWindow = styled(Window)`
   max-width: 100%;
+  margin-bottom: 15px;
 `;
 
 const StyledWindowContent = styled(WindowContent)`
